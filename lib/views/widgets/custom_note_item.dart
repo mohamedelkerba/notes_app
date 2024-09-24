@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../../core/widgets/default_text.dart';
 import '../../style/colors/colors.dart';
 
@@ -27,7 +26,7 @@ class NoteItem extends StatelessWidget {
               padding: const EdgeInsets.only(top: 16.0, bottom: 16),
               child: DefaultText(
                 text: 'Build your app with mohamed gamal',
-                fontSize: 20,
+                fontSize: 18,
                 fontColor: Colors.black.withOpacity(0.4),
               ),
             ),

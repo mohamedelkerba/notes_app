@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../core/widgets/default_text.dart';
 
 class CustomAppBar extends StatelessWidget {
   const CustomAppBar({super.key});
@@ -9,12 +10,11 @@ class CustomAppBar extends StatelessWidget {
       padding: const EdgeInsets.only(top: 25.0),
       child: Row(
         children: [
-          Text('Notes',
-              style: TextStyle(
-                fontSize: 28,
-              )
+          DefaultText(
+            text:'Notes',
+            fontSize: 28,
           ),
-          Spacer(),
+          const Spacer(),
           Container(
             width: 45,
             height: 45,
@@ -28,7 +28,6 @@ class CustomAppBar extends StatelessWidget {
               child: Icon(Icons.search, color: Colors.white,),
             ),
           ),
-
         ],
       ),
     );
