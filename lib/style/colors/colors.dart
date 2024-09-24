@@ -10,6 +10,7 @@ const com_color = Color(0xff0078D7);
 const icon_login_color = Color(0xff6798C6);
 const login = Color(0xff464040);
 const login_border = Color(0xff0078D7);
+const notesItem = Color(0xffFFCC80);
 const hint = Color(0xff707070);
 const demo = Color(0xff87B86C);
 const yello = Color(0xff00FFA8);
