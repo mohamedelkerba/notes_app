@@ -23,6 +23,7 @@ const textColorAddClient = Color(0xffD1DEE8);
 const blueDividerColor = Color(0xffAECEE8);
 const backgroundLayout= Color(0xffF7F7F7);
 const sliderCategory = Color(0xffF2F7FB);
+const addNoteColor = Color(0xff4f378b);
 const iconColor = Color(0xff6798C6);
 //#0078D7
 const back1 = Color(0xff7B986A);
