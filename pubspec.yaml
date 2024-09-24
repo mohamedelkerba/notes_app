@@ -35,6 +35,11 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.8
+  flutter_screenutil: ^5.9.3
+  flutter_svg: ^2.0.10+1
+  file_picker: ^8.1.2
+
+
 
 dev_dependencies:
   flutter_test:
@@ -74,17 +79,42 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
-  # fonts:
-  #   - family: Schyler
-  #     fonts:
-  #       - asset: fonts/Schyler-Regular.ttf
-  #       - asset: fonts/Schyler-Italic.ttf
-  #         style: italic
-  #   - family: Trajan Pro
-  #     fonts:
-  #       - asset: fonts/TrajanPro.ttf
-  #       - asset: fonts/TrajanPro_Bold.ttf
-  #         weight: 700
-  #
+  fonts:
+    - family: Dexef
+      fonts:
+        - asset: assets/fonts/Dexef-Bold.ttf
+          weight: 800
+        - asset: assets/fonts/DEXEF-REGULAR.ttf
+          weight: 400
+        - asset: assets/fonts/Dexef-Normal.ttf
+          weight: 300
+
+    - family: Nunito
+      fonts:
+        - asset: assets/fonts/Nunito-SemiBold.ttf
+        - asset: assets/fonts/Nunito-Bold.ttf
+
+    - family: SF Pro
+      fonts:
+        - asset: assets/fonts/SF-Pro-Display-Bold.ttf
+        - asset: assets/fonts/SF-Pro-Display-Regular.ttf
+        - asset: assets/fonts/sf-pro-text-semibold.ttf
+
+    - family: DXRound
+      fonts:
+        - asset: assets/fonts/DXRound-Bold.ttf
+        - weight: 900
+        - asset: assets/fonts/DXRound-Regular.ttf
+          weight: 400
+
+    - family: DXRoundBold
+      fonts:
+        - asset: assets/fonts/DXRoundBold-Bold.ttf
+          weight: 800
+
+    - family: DXRoundRegular
+      fonts:
+        - asset: assets/fonts/DXRoundRegular-Regular.ttf
+          weight: 500
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/to/font-from-package
