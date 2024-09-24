@@ -4,9 +4,8 @@ import '../../core/widgets/default_text.dart';
 import '../../style/colors/colors.dart';
 
 class AddNoteBottomSheet extends StatelessWidget {
-   AddNoteBottomSheet({super.key});
+  const AddNoteBottomSheet({super.key});
 
-  TextEditingController controller = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Padding(
