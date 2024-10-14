@@ -107,7 +107,7 @@ flutter:
     - family: DXRound
       fonts:
         - asset: assets/fonts/DXRound-Bold.ttf
-        - weight: 900
+          weight: 900
         - asset: assets/fonts/DXRound-Regular.ttf
           weight: 400
 

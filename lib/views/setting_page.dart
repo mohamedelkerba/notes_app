@@ -8,7 +8,7 @@ class SettingPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.red,
       appBar: AppBar(
-        title: Text('SettingPage'),
+        title: const Text('SettingPage'),
       ),
     );
   }
