@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:training/views/edit_note_view.dart';
+import '../../core/style/colors/colors.dart';
 import '../../core/widgets/default_text.dart';
-import '../../style/colors/colors.dart';
 
 class NoteItem extends StatelessWidget {
   const NoteItem({super.key});
