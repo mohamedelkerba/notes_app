@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:training/cubit/notes_cubit/notes_cubit.dart';
+import 'package:training/models/note_model.dart';
 import 'package:training/views/edit_note_view.dart';
-import '../../core/style/colors/colors.dart';
 import '../../core/widgets/default_text.dart';
 
 class NoteItem extends StatelessWidget {
-  const NoteItem({super.key});
+ const  NoteItem({super.key, required this.note});
 
+  final NoteModel note ;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -17,7 +20,7 @@ class NoteItem extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.only(top: 24, bottom: 24, left: 16),
         decoration: BoxDecoration(
-          color: notesItem,
+          color: Color(note.color),
           borderRadius: BorderRadius.circular(12),
         ),
         child: Column(
@@ -25,20 +28,23 @@ class NoteItem extends StatelessWidget {
           children: [
             ListTile(
               title: DefaultText(
-                text: 'Flutter Tips',
+                text: note.title,
                 fontSize: 26,
                 fontColor: Colors.black,
               ),
               subtitle: Padding(
                 padding: const EdgeInsets.only(top: 16.0, bottom: 16),
                 child: DefaultText(
-                  text: 'Build your app with mohamed gamal',
+                  text: note.subTitle,
                   fontSize: 18,
                   fontColor: Colors.black.withOpacity(0.4),
                 ),
               ),
               trailing: IconButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    note.delete();
+                    BlocProvider.of<NotesCubit>(context).fetchAllNotes();
+                  },
                   icon: const Icon(
                     Icons.delete,
                     color: Colors.black,
@@ -48,7 +54,7 @@ class NoteItem extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(right: 24.0),
               child: DefaultText(
-                text: 'May 24 , 2024',
+                text: note.date,
                 fontSize: 14,
                 fontColor: Colors.black.withOpacity(0.4),
               ),
