@@ -3,14 +3,16 @@ import 'package:flutter/material.dart';
 import '../style/colors/colors.dart';
 
 class CustomTextField extends StatelessWidget {
-   CustomTextField({super.key , required this.hintText, this.maxLines =1, this.onSaved });
+   CustomTextField({super.key, required this.hintText,this.maxLines =1,this.onSaved, required this.controller});
 
  final String hintText;
  final int maxLines;
-   void Function(String?)?onSaved;
+ final void Function(String?)?onSaved;
+ TextEditingController controller ;
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      controller: controller,
       cursorColor:addNoteColor ,
       maxLines: maxLines,
       onSaved: onSaved,
