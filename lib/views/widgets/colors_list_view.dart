@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:training/cubit/add_notes_cubit/add_note_cubit.dart';
-import 'package:training/models/note_model.dart';
 
 class ColorsListView extends StatefulWidget {
   const ColorsListView({super.key});
@@ -13,10 +12,10 @@ class ColorsListView extends StatefulWidget {
 class _ColorsListViewState extends State<ColorsListView> {
   int  currentIndex =0;
   List<Color > colors = const [
-    Color(0xffF9DBBD),
-    Color(0xff2A4D85),
-    Color(0xff595A4A),
-    Color(0xffB0FE76),
+    Color(0xff395B64),
+    Color(0xffE7F6F2),
+    Color(0xffA5C9CA),
+    Color(0xff2C3333),
     Color(0xff81E979),
     Color(0xff8FBB99),
   ];

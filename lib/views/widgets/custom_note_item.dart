@@ -2,68 +2,93 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:training/cubit/notes_cubit/notes_cubit.dart';
 import 'package:training/models/note_model.dart';
-import 'package:training/views/edit_note_view.dart';
-import '../../core/widgets/default_text.dart';
+import 'package:training/views/widgets/note_container.dart';
+import 'package:training/views/widgets/swipe_action_background.dart';
+import '../../core/widgets/delete_dialog.dart';
+import '../edit_note_view.dart';
 
-class NoteItem extends StatelessWidget {
- const  NoteItem({super.key, required this.note});
+class NoteItem extends StatefulWidget {
+  const NoteItem({super.key, required this.note});
 
-  final NoteModel note ;
+  final NoteModel note;
+
+  @override
+  _NoteItemState createState() => _NoteItemState();
+}
+
+class _NoteItemState extends State<NoteItem> {
+  bool _isBeingDragged = false;
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.push(context, MaterialPageRoute(builder: (context) {
-          return  EditNoteView(
-            note: note,
-          );
-        }));
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) {
+            return EditNoteView(note: widget.note);
+          }),
+        );
       },
-      child: Container(
-        padding: const EdgeInsets.only(top: 24, bottom: 24, left: 16),
-        decoration: BoxDecoration(
-          color: Color(note.color),
-          borderRadius: BorderRadius.circular(12),
+      child: Dismissible(
+        key: Key(widget.note.key.toString()),
+        direction: DismissDirection.horizontal,
+        confirmDismiss: _confirmDismissAction,
+        onDismissed: _handleDismiss,
+        onUpdate: _handleDragUpdate,
+        background: const SwipeActionBackground(
+          alignment: Alignment.centerLeft,
+          color: Colors.green,
+          icon: Icons.check,
         ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.end,
-          children: [
-            ListTile(
-              title: DefaultText(
-                text: note.title,
-                fontSize: 26,
-                fontColor: Colors.black,
-              ),
-              subtitle: Padding(
-                padding: const EdgeInsets.only(top: 16.0, bottom: 16),
-                child: DefaultText(
-                  text: note.subTitle,
-                  fontSize: 18,
-                  fontColor: Colors.black.withOpacity(0.4),
-                ),
-              ),
-              trailing: IconButton(
-                  onPressed: () {
-                    note.delete();
-                    BlocProvider.of<NotesCubit>(context).fetchAllNotes();
-                  },
-                  icon: const Icon(
-                    Icons.delete,
-                    color: Colors.black,
-                    size: 30,
-                  )),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(right: 24.0),
-              child: DefaultText(
-                text: note.date,
-                fontSize: 14,
-                fontColor: Colors.black.withOpacity(0.4),
-              ),
-            ),
-          ],
+        secondaryBackground: const SwipeActionBackground(
+          alignment: Alignment.centerRight,
+          color: Colors.red,
+          assetPath: 'assets/images/delete_icon.svg',
         ),
+        child: NoteContainer(note: widget.note,),
       ),
     );
   }
+
+
+
+
+  Future<bool?> _confirmDismissAction(DismissDirection direction) async {
+    if (direction == DismissDirection.endToStart) {
+      return await _showDeleteConfirmationDialog(context);
+    } else if (direction == DismissDirection.startToEnd) {
+      setState(() {
+        widget.note.isCompleted = !widget.note.isCompleted;
+        widget.note.save();
+      });
+      return false;
+    }
+    return false;
+  }
+
+  void _handleDismiss(DismissDirection direction) {
+    if (direction == DismissDirection.endToStart) {
+      widget.note.delete();
+      BlocProvider.of<NotesCubit>(context).fetchAllNotes();
+    }
+  }
+
+  void _handleDragUpdate(DismissUpdateDetails details) {
+    setState(() {
+      _isBeingDragged = details.reached && details.progress > 0;
+    });
+  }
+
+  Future<bool?> _showDeleteConfirmationDialog(BuildContext context) {
+    return showDialog<bool>(
+      context: context,
+      builder: (context) {
+        return DeleteConfirmationDialog();
+      },
+    );
+  }
 }
+
+
+

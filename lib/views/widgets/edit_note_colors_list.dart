@@ -15,10 +15,10 @@ class _EditNoteColorsListState extends State<EditNoteColorsList> {
 
   late int currentIndex ;
   List<Color > colors = const [
-    Color(0xffF9DBBD),
-    Color(0xff2A4D85),
-    Color(0xff595A4A),
-    Color(0xffB0FE76),
+    Color(0xff395B64),
+    Color(0xffE7F6F2),
+    Color(0xffA5C9CA),
+    Color(0xff2C3333),
     Color(0xff81E979),
     Color(0xff8FBB99),
   ];
