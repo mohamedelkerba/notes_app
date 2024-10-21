@@ -5,7 +5,9 @@ import 'custom_app_bar.dart';
 import 'notes_list_view.dart';
 
 class NotesViewBody extends StatefulWidget {
-  const NotesViewBody({super.key});
+  final VoidCallback toggleTheme;
+
+  const NotesViewBody({super.key, required this.toggleTheme});
 
   @override
   State<NotesViewBody> createState() => _NotesViewBodyState();
@@ -20,14 +22,19 @@ class _NotesViewBodyState extends State<NotesViewBody> {
 
   @override
   Widget build(BuildContext context) {
-    return const Padding(
-      padding: EdgeInsets.symmetric(horizontal: 12.0,),
+    return  Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 12.0,),
       child: Column(
         children: [
-          SizedBox(height: 20,),
-          CustomAppBar(titleText: 'Notes', icon: Icons.search,),
-          SizedBox(height: 12,),
-          Expanded(child: NotesListView()),
+         const SizedBox(height: 20,),
+          CustomAppBar(
+            isThemeToggle: true,
+            titleText: 'Notes',
+            iconAsset: 'assets/images/night_icon.svg' ,
+            onTap: widget.toggleTheme,
+          ),
+          const SizedBox(height: 12,),
+          const   Expanded(child: NotesListView()),
         ],
       ),
     );

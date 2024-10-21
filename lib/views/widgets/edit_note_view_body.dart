@@ -41,9 +41,10 @@ class _EditNoteViewBodyState extends State<EditNoteViewBody> {
         children: [
           const SizedBox(height: 20,),
           CustomAppBar(
+            isThemeToggle: false,
             titleText: 'EditNotes',
-            icon: Icons.check,
-            onPressed: () {
+            iconAsset: 'assets/images/light_icon.svg',
+            onTap: () {
               widget.note.title = titleController!.text;
               widget.note.subTitle = subTitleController!.text;
               widget.note.save();

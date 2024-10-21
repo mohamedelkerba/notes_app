@@ -6,6 +6,7 @@ import 'cubit/notes_cubit/notes_cubit.dart';
 import 'views/notes_view.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+
 void main() async {
   await Hive.initFlutter();
   Bloc.observer = SimpleBlocObserver();
@@ -14,8 +15,21 @@ void main() async {
   runApp(const NotesApp());
 }
 
-class NotesApp extends StatelessWidget {
-  const NotesApp({super.key});
+class NotesApp extends StatefulWidget {
+  const NotesApp({Key? key}) : super(key: key);
+
+  @override
+  _NotesAppState createState() => _NotesAppState();
+}
+
+class _NotesAppState extends State<NotesApp> {
+  bool isDarkTheme = true;
+
+  void toggleTheme() {
+    setState(() {
+      isDarkTheme = !isDarkTheme;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -23,11 +37,17 @@ class NotesApp extends StatelessWidget {
       create: (context) => NotesCubit(),
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
+        title: 'Notes App',
         theme: ThemeData(
-          brightness: Brightness.dark,
-          scaffoldBackgroundColor: const Color(0xff121212),
+          brightness: Brightness.light,
+          useMaterial3: true,
         ),
-        home: const NotesView(),
+        darkTheme: ThemeData(
+          brightness: Brightness.dark,
+          useMaterial3: true,
+        ),
+        themeMode: isDarkTheme ? ThemeMode.dark : ThemeMode.light,
+        home: NotesView(toggleTheme: toggleTheme),
       ),
     );
   }
